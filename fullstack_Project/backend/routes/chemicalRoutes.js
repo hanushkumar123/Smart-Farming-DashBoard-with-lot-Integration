@@ -1,0 +1,9 @@
+const express = require('express');
+const router = express.Router();
+const { getChemicals, addChemical, deleteChemical } = require('../controllers/chemicalController');
+const { protect } = require('../middleware/authMiddleware');
+
+router.route('/').get(protect, getChemicals).post(protect, addChemical);
+router.route('/:id').delete(protect, deleteChemical);
+
+module.exports = router;
